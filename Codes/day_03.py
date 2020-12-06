@@ -78,14 +78,40 @@
 #     else:
 #         bill = 12
 #         print("Please pay for Adult ticket $12")
-    
+
 #     photo = input("\nDo you want a photo \"Y\" or \"N\" ")
 #     if photo == "Y":
 #         # add $3 to their bill
 #         bill += 3
 #     print(f"Please pay ${bill}")
-    
+
 # else:
 #     print("\nSorry, you have to graw taller")
 
 
+# Automatic pizza order program
+
+print("\nWelcome to Python Pizza Deliveries!")
+size = input("\nWhat size pizza do you want? S, M, or L ")
+add_pepperoni = input("\nDo you want pepperoni? Y or N ")
+extra_cheese = input("\nDo you want extra cheese? Y or N ")
+
+total = 0
+
+if size == "S":
+    total = 15
+elif size == "M":
+    total = 20
+else:
+    total = 25
+
+if add_pepperoni == "Y":
+    if size == "S":
+        total += 2
+    else:
+        total += 3
+
+if extra_cheese == "Y":
+    total += 1
+
+print(f"Your final bill is: ${total}.")
