@@ -98,6 +98,7 @@ extra_cheese = input("\nDo you want extra cheese? Y or N ")
 
 total = 0
 
+# Size of pizza 
 if size == "S":
     total = 15
 elif size == "M":
@@ -105,12 +106,14 @@ elif size == "M":
 else:
     total = 25
 
+# add pepperoni
 if add_pepperoni == "Y":
     if size == "S":
         total += 2
     else:
         total += 3
 
+# extra cheese
 if extra_cheese == "Y":
     total += 1
 
