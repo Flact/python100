@@ -33,10 +33,10 @@ resources = {
 }
 
 coins = {
-    "Penny": 0.01,
-    "Nickel": 0.05,
-    "Dime": 0.1,
     "Quarter": 0.25,
+    "Dime": 0.1,
+    "Nickel": 0.05,
+    "Penny": 0.01,
 }
 
 logo = """
