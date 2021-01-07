@@ -3,22 +3,14 @@
 from data import MENU, resources, coins, logo
 from time import sleep
 
-# print(MENU['cappuccino']['ingredients']['water'])
-
 
 inpt_choies = ["espresso", "latte", "cappuccino", "report", "off"]
 profit = 0.0
 
 
-print(f"{logo}\n-------------MENU-------------")
-
-for key in MENU:
-    print(f"\n{key}: ${MENU[key]['cost']}")
-
-
 def resource_modifire(ing):
     """
-    docstring
+    Manage resources afetr odering a drink
     """
     for itm in ing:
         resources[itm] -= ing[itm]
@@ -30,31 +22,32 @@ def coins_collector(ch, drink):
     print(f"\n{ch.title()} price is ${cost}, Please insert coins")
     for coin in coins:
         x = (input(f"\nHow many {coin}s: "))
-        # print(t)
-        if int(x) in range(101):
+        if x.isdigit() and int(x) in range(0, 301):
             t += float(x) * coins[coin]
-        elif t > 0:
-            print(
-                "\nWrong input, Here's your money refunded ${t}\nPlease come back later")
+            if t == cost or t > cost:
+                break
+
+        elif t > 0:  # In middel of the loop if enter wrong characters
+            print(f"\nWrong input, Here's your money refunded ${t}\nPlease come back later")
         else:
-            print("\nWrong input, Please come back later")
-    if t > cost:
-        print(f"Here's your {ch}. and Here's Your Change: ${t - cost}")
+            print("\nWrong input 🤭, Start again..")
+            sleep(1)
+            break
+    if not t == 0 and t > cost:
+        print(f"Here's your {ch} ☕. and Here's Your Change:💸 ${round((t - cost), 2)}")
         global profit
         profit += cost
         resource_modifire(drink["ingredients"])
     elif t == cost:
-        print(f"Here's your {ch}")
+        print(f"Here's your {ch} ☕ Have a good one 👻")
         resource_modifire(drink["ingredients"])
-    else:
-        print(
-            f"\nNot enuogh money\nHere's your money refunded ${t}\nPlease come back later")
-    # return t
+    elif t > 0:
+        print(f"\nNot enuogh money\nHere's your money refunded ${t}\nPlease come back later")
 
 
 def is_resources(ing):
     """
-    docstring
+    Chech if resourses is enough and return if good
     """
     for item in ing:
         if resources[item] < ing[item]:
@@ -64,23 +57,27 @@ def is_resources(ing):
 
 
 while True:
-    choise = input("\nWhat would you like ('Espresso'/'Latte'/'Cappuccino'): ").lower()
+    print(f"{logo}\n-------------MENU-------------")
+    for key in MENU:
+        print(f"\n{key}: ${MENU[key]['cost']}")
+    choise = input(
+        "\nWhat would you like ('Espresso'/'Latte'/'Cappuccino'): ").lower()
     if choise in inpt_choies:
         if choise == "report":
             for res in resources:
                 print(f"\n{res}:\t{resources[res]}")
-            print(f"Proffit: ${profit}")
+            print(f"\nProffit: ${profit}")
         elif choise == "off":
             break
         else:
             if not is_resources(MENU[choise]["ingredients"]):
+                sleep(1)
                 break
             drink = MENU[choise]
             coins_collector(choise, drink)
 
-    elif input("Wrong input, Do you want to start again? (y/n)").lower() == "y":
-        continue
+    elif input("\nWrong input, Do you want to start again? (y/n): ").lower() == "y": continue
     else:
-        print("Wrong input, Exiting Program...")
+        print("\nWrong input 😜, Exiting Program... 👋")
         sleep(1)
         break
