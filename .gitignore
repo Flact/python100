@@ -10,6 +10,9 @@ dist/
 # VSCode Settings files
 .vscode
 
+# VSCode Settings files
+.idea
+
 # Compiled Java class files
 *.class
 
