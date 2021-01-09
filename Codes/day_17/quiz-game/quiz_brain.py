@@ -11,7 +11,7 @@ class QuizBrain:
         current_question = self.question_list[self.question_number]
         self.question_number += 1
         answer = input(f"\nQ.{self.question_number}: {current_question.text} (True/False): ")
-        if answer.lower() in ["true", "false", "t", "f"]:
+        if answer.lower() in ["true", "false", "t", "f"]: # user validation
             self.check_answer(answer, current_question.answer)
         else:
             print("Wrong input try again")
