@@ -8,7 +8,7 @@ LEFT = 180
 RIGHT = 0
 
 t = Turtle()
-# t.heading()
+# t.distance()
 
 
 class Snake:
