@@ -22,7 +22,7 @@ class CarManager():
             random_y = random.randint(-250, 250)
             new_car.goto(300, random_y)
             self.all_cars.append(new_car)
-            print("Created")
+            # print("Created")
             # new_car.distance()
 
     def move_cars(self):
