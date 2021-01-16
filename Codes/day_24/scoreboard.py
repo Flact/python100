@@ -4,11 +4,21 @@ ALIGNMENT = "center"
 FONT = ("PottaOne-Regular", 18, "normal")
 
 
+def read_score():
+    with open("data.txt") as file:
+        return int(file.read())
+
+
+def write_score(score):
+    with open("data.txt", mode="w") as file:
+        file.write(score)
+
+
 class Scoreboard(Turtle):
     def __init__(self):
         super().__init__()
         self.score = 0
-        self.high_score = 0
+        self.high_score = read_score()
         self.color("white")
         self.penup()
         self.goto(0, 270)
@@ -23,6 +33,8 @@ class Scoreboard(Turtle):
     def rest(self):
         if self.score > self.high_score:
             self.high_score = self.score
+            write_score(f"{self.high_score}")
+
         self.score = 0
         self.update_score()
 
