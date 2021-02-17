@@ -30,5 +30,7 @@ while len(guessed_states) < 50:
         break
 
 # print(sorted(list(set(all_states) - set(guessed_states))))  # this is missing states of couldn't filled out
-missing_states = pandas.DataFrame(sorted(list(set(all_states) - set(guessed_states))))
+missing_states = pandas.DataFrame([s for s in all_states if s not in guessed_states])
 missing_states.to_csv("states_to_learn.csv")
+# lis = [s for s in all_states if s not in guessed_states]
+# print(lis)
