@@ -1,8 +1,9 @@
+import json
+from random import choice, randint, shuffle
 from tkinter import *
 from tkinter import messagebox
-from random import choice, randint, shuffle
+
 import pyperclip
-import json
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -81,7 +82,18 @@ def save():
 # ---------------------------- FIND PASSWORD ------------------------------- #
 
 def find_password():
-    print("Searching...")
+    website = txt_website.get()
+    try:
+        with open("data.json", "r") as data_file:
+            data = json.load(data_file)
+    except FileNotFoundError:
+        messagebox.showinfo(title="Oops", message="No data file found!")
+    else:
+        try:
+            msg = f"Email: {data[website]['email']}\nPassword: {data[website]['password']}"
+            messagebox.showinfo(title=website.title(), message=msg)
+        except KeyError:
+            messagebox.showinfo(title="Oops", message="No details for the website exists!")
 
 
 # ---------------------------- UI SETUP ------------------------------- #
