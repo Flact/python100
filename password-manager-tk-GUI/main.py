@@ -72,9 +72,7 @@ def save():
                 # Saving updated data
                 json.dump(data, data_file, indent=4)
         finally:
-            txt_website.delete(0, END)
-            txt_password.delete(0, END)
-            txt_website.focus()
+            clean_fields()
     else:
         messagebox.showinfo(title="Oops", message="Please don't leave any fields empty!")
 
@@ -89,11 +87,26 @@ def find_password():
     except FileNotFoundError:
         messagebox.showinfo(title="Oops", message="No data file found!")
     else:
-        try:
+        # try:
+        #     msg = f"Email: {data[website]['email']}\nPassword: {data[website]['password']}"
+        #     messagebox.showinfo(title=website.title(), message=msg)
+        # except KeyError:
+        #     messagebox.showinfo(title="Oops", message="No details for the website exists!")
+        #
+        if website in data:
             msg = f"Email: {data[website]['email']}\nPassword: {data[website]['password']}"
             messagebox.showinfo(title=website.title(), message=msg)
-        except KeyError:
-            messagebox.showinfo(title="Oops", message="No details for the website exists!")
+            clean_fields()
+        else:
+            messagebox.showinfo(title="Oops", message=f"No details for the '{website.title()}' exists!")
+            clean_fields()
+
+
+# ---------------------------- CLEAN ENTRIES ------------------------------- #
+def clean_fields():
+    txt_website.delete(0, END)
+    txt_password.delete(0, END)
+    txt_website.focus()
 
 
 # ---------------------------- UI SETUP ------------------------------- #
