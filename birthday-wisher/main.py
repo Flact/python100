@@ -4,8 +4,8 @@ from datetime import datetime as dt
 
 import pandas as pd
 
-g_mail = "sumududalamal6@gmail.com"
-g_pw = "xhBCB9*gi%CZ@*"
+g_mail = "example@gmail.com"
+g_pw = "example"
 
 today = [dt.now().month, dt.now().day]
 
