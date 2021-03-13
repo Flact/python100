@@ -15,7 +15,7 @@ row = data[(data['month'] == today[0]) & (data['day'] == today[1])]  # Very Very
 
 if not row.empty:
     with open(f"letter_templates/letter_{random.randint(1, 3)}.txt", "r") as f:
-        msg = f.read().replace('[NAME]', row["name"].item())
+        msg = f.read().replace('[NAME]', row["name"].item())  # row["name"] returns a list that's why put .item()
         print(msg)
         with smtplib.SMTP("smtp.gmail.com", 587) as conn:
             conn.starttls()
