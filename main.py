@@ -2,9 +2,9 @@ import datetime as dt
 import random
 import smtplib
 
-# to_add = "sumududalmal@yahoo.com"
-g_mail = "sumududalamal6@gmail.com"
-g_pw = "xhBCB9*gi%CZ@*"
+# to_add = "example@yahoo.com"
+g_mail = "example@gmail.com"
+g_pw = "example"
 
 day_of_week = dt.datetime.now().weekday()
 # print(day_of_week)
