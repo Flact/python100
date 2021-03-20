@@ -1,5 +1,5 @@
 import json
-from datetime import date
+from datetime import date, timedelta
 
 import requests
 
@@ -14,16 +14,15 @@ with open("day_36.json") as f:
 response = requests.get(data["alphavantage"]["url"])
 response.raise_for_status()
 stock_data = response.json()["Time Series (Daily)"]
-# print(stock_data)
-# print(response.json()["Time Series (Daily)"])
 
 today = date.today()
-yesterday = str(date(today.year, today.month, today.day - 1))
-ereyesterday = str(date(today.year, today.month, today.day - 2))
+y_day1 = str(today - timedelta(days=1))
+y_day2 = str(today - timedelta(days=2))
 
-# print(type(d))
+n1 = float(stock_data[y_day1]["4. close"])
+n2 = float(stock_data[y_day2]["4. close"])
 
-x = pcent_diff(float(stock_data[yesterday]["4. close"]), float(stock_data[ereyesterday]["4. close"]))
+diff = pcent_diff(n1, n2)
 
-print(type(x))
-print(x)
+if diff > 0:
+    print("Get News")
