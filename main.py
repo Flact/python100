@@ -9,8 +9,11 @@ response = requests.get("https://api.openweathermap.org/data/2.5/onecall", param
 response.raise_for_status()
 
 data = response.json()["hourly"]
-conditions = [sub_data["weather"][0]["id"] for sub_data in data[:12] if sub_data["weather"][0]["id"] < 700]
+# conditions = [sub_data["weather"][0]["id"] for sub_data in data[:12] if sub_data["weather"][0]["id"] < 700]
 
-print(len(conditions))
-print(conditions)
+# print(len(conditions))
+# print(conditions)
+
+if [sub_data for sub_data in data[:12] if sub_data["weather"][0]["id"] < 700]:
+    print("Today is rainy, Bring an umbrella")
 
